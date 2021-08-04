@@ -10,4 +10,4 @@ Use the code snippets found in this respository as inspiration for your own proj
 of how Pandas, Numpy, ScikitLearn, Matplolib, Plotly and other packages can be used together with the time series data that
 is already available in TrendMiner to enhance your analysis.
 
-Review the wiki page for more information on how to get started and a brief description of the snippets found in this repository.
+Review the [wiki page](https://github.com/TrendMiner/notebooks/wiki) for more information on how to get started and a brief description of the snippets found in this repository.
