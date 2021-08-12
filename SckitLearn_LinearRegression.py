@@ -4,7 +4,10 @@ tm_url = "<Enter_your_TM_URL>"
 model_name = "<EnterName as you want it to appear in PMML Model dropdown in tagbuilder>"
 predicted_variable = "<EnterHere (e.g. Pressure, Temperature, etc.)>"
 model_description = "<EnterHere>"
-
+features = ["Enter", "Model", "Features"]
+Yvalue = "Variable_To_Be_Predicted"
+filename = f'{model_name}.pmml'
+# MAKE SURE YOU DEFINE VIEW DATAFRAME BELOW (LINE 48)
 
 # 1) ****** Importing needed packages
 
@@ -39,20 +42,15 @@ client = TrendMinerClient("{TM_TOKEN.password}", tm_url)
 # 2) ****** Loading the timeseries data from a TrendHub view
 
 # Loading TrendHub view
-# Add using the Add TrendMiner Content option
+# Add using the "Add TrendMiner Content" option
 
 views = Views(client)
-df = views.load_view('9dedb845-05c2-4ad4-a56a-5d66573b86b2')
-df_train=df[0]
+df = views.load_view('VIEW_UUID_HERE')
+df=pd.concat(df)
 print(df_train.head(10))
 
 
 # 3) ****** Defining the features and splitting the data into training and testing set
-
-# replace features with the dataframe column names of your inputs.
-# replace Yvalue with target column of dataframe
-features = ["R101_FI1", "R101_FI2"]
-Yvalue = "R101_PI"
 
 X = df_train[features]
 y = df_train[Yvalue]
@@ -77,7 +75,6 @@ print(model1[1].intercept_)
 print(f"y={(model1[1].coef_)[0]}*x1 + {(model1[1].coef_)[1]}*x2  +  {model1[1].intercept_}")
 
 
-
 # 5) ****** Evaluating the model with Test Data
 
 y_pred = model1.predict(X_test)
@@ -93,7 +90,7 @@ print("R2 =", "{:.3f}".format(r2_score(y_test, y_pred)))
 skl_to_pmml(pipeline=model1,
             col_names=features,
             target_name=predicted_variable,
-            pmml_f_name="hello.pmml",
+            pmml_f_name=filename,
             model_name=model_name,
             description=model_description)
 
@@ -101,8 +98,8 @@ skl_to_pmml(pipeline=model1,
 # 7) ****** Deploying the model with Zementis
 
 #Deploying model with Zementis
-with open("hello.pmml","r") as f:
-    string = f.read()
+with open(filename,"r") as f:
+    model_string = f.read()
 
 # But first, lets delete the model from pervious demo
 zementis = ZementisModels(client)
@@ -113,7 +110,7 @@ except trendminer.ml.models.exceptions.MLModelNotFoundException:
 
 # Now we can deploy the model and voila!
 models = ZementisModels(client)
-model_id = models.deploy_model(string)
+model_id = models.deploy_model(model_string)
 model_details = models.model_details(model_id)
 
 models = ZementisModels(client)
