@@ -104,12 +104,12 @@ skl_to_pmml(pipeline=model1,
 with open("hello.pmml","r") as f:
     string = f.read()
 
-# But first, lets delete the model from previous run, if it exists.
-model_name_list = []
-for item in all_models:
-    model_name_list.append(item['modelName'])
-if model_name in model_name_list:
-    ZementisModels(client).delete_model(model_name)
+# But first, lets delete the model from pervious demo
+zementis = ZementisModels(client)
+try:
+    zementis.delete_model(model_name)
+except trendminer.ml.models.exceptions.MLModelNotFoundException:
+    pass
 
 # Now we can deploy the model and voila!
 models = ZementisModels(client)
