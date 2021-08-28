@@ -44,4 +44,4 @@ SummaryTable = round(df.resample('M').apply(scipy.integrate.trapz)/1440,1)
 df_formatted = SummaryTable.style.set_properties(**{'background-color': 'white'})
 
 print("%html " + df_formatted.render())
-print("%html " + plotly.io.to_html(px.line(SummaryTable)))
+print("%html " + plotly.io.to_html(px.bar(SummaryTable, orientation='v', opacity=0.6)))
