@@ -47,7 +47,12 @@ ContextItemList = []
 for context_item in r_context_items_json:
 
     (context_item['fields'])['startDate'] = context_item['events'][0]['occurred']
-    (context_item['fields'])['endDate'] = context_item['events'][1]['occurred']
+   
+    if len(context_item['events']) != 2:
+        (context_item['fields'])['endDate'] = ''    
+    else:
+        (context_item['fields'])['endDate'] = context_item['events'][1]['occurred']
+    
     (context_item['fields'])['keywords'] = context_item['keywords']
     (context_item['fields'])['Description'] = context_item['description']
     (context_item['fields'])['ItemType'] = context_item['type']['name']
