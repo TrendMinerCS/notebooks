@@ -5,8 +5,8 @@
 
 # 1) ******* Input <TM_URL> and ContextHub View ID
 
-tm_url = 'https://dsitl-demo.trendminer.cloud/'
-viewID = '3046916a-376d-4b76-9410-541243b2d46b'
+tm_url = '<TM_URL>'
+viewID = '<ContextHub_ViewID>'
 
 #########################  ENTER INFORMATION ABOVE ################################
 
