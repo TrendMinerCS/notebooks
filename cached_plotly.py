@@ -14,7 +14,11 @@ refresh_rate = 3600 #in seconds
 # if the file does not exist, or is older than the refresh rate, execute the code
 if not os.path.exists(filename) or (time.time() - os.stat(filename).st_mtime > refresh_rate):
     
-    #package imports
+    # Update existing file edit date to prevent parallel calculations
+    with open(filename, 'a') as f:
+        f.write(' ')
+    
+    # package imports
     import pandas as pd
     import numpy as np
     import matplotlib.pyplot as plt
