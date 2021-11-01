@@ -46,16 +46,13 @@ totalPages = r_context_item_pages.json()['page']['totalPages']
 
 #For each page, get the all context items
 endpoint= "context/item/search?size=25&page="
-r_context_items_page_list = []
+ContextItemList = []
+
 for i in range(1, totalPages+1, 1):
     r_context_items = requests.post(tm_url + endpoint + str(i), headers=headers, json=body)
-    r_context_items_page_list.append(r_context_items.json()['content'])
     
+    for context_item in r_context_items.json()['content']:
 
-#For each page in list, get context items and arrange in simple array
-ContextItemList = []
-for itemPage in r_context_items_page_list:
-    for context_item in itemPage:
         (context_item['fields'])['startDate'] = context_item['events'][0]['occurred']
        
         if len(context_item['events']) != 2:
@@ -68,7 +65,7 @@ for itemPage in r_context_items_page_list:
         (context_item['fields'])['ItemType'] = context_item['type']['name']
         (context_item['fields'])['Component'] = context_item['components'][0]['name']
         ContextItemList.append(context_item['fields'])
-
+  
 
 df = pd.DataFrame(ContextItemList)
 df['TotalMinutes'] = (df['endDate'].astype('datetime64[ns]')-df['startDate'].astype('datetime64[ns]')).dt.total_seconds()/60
