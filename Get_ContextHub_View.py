@@ -36,7 +36,7 @@ endpoint = 'context/view/' + viewID + '/enriched'
 r_context_view = requests.get(tm_url + endpoint, headers = auth_header)
 r_context_view_json = r_context_view.json()
 
-endpoint= "context/item/search?size=2000&useTimeSeriesIdentifier=true"
+endpoint= "context/item/search?size=100&useTimeSeriesIdentifier=true"  #Get last 100 items of CH View
 body = {"filters": r_context_view_json['data']['filters']}
 headers = {'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json'}
 
