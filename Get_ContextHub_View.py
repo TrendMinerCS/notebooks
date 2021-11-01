@@ -48,7 +48,7 @@ totalPages = r_context_item_pages.json()['page']['totalPages']
 endpoint= "context/item/search?size=25&page="
 ContextItemList = []
 
-for i in range(1, totalPages+1, 1):
+for i in range(0, totalPages+1, 1):
     r_context_items = requests.post(tm_url + endpoint + str(i), headers=headers, json=body)
     
     for context_item in r_context_items.json()['content']:
