@@ -9,6 +9,8 @@ target_name="R101_Pressure"
 
 ############################ INPUTS #########################
 
+### PAGE 1 #############################
+
 # Suggested data science package imports
 import pandas as pd
 import numpy as np
@@ -48,6 +50,7 @@ warnings.filterwarnings("ignore")
 # Create TrendMiner API object
 client = TrendMinerClient("{TM_TOKEN.password}", tm)
 
+### PAGE 2 #############################
 
 from trendminer.views.views import Views
 
@@ -63,6 +66,7 @@ y = df_train["R101_PI"]             ###################### Variable of interest 
 #Splitting the data using the train_test_split function.
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, shuffle=True)
 
+### PAGE 3 #############################
 
 '''
 import numpy as np
@@ -85,11 +89,13 @@ print('Best hyper parameter (GRID SEARCH):')
 print(optimizedModel.best_params_)
 '''
 
+### PAGE 4 #############################
 
 estimators = [('model', RandomForestRegressor(bootstrap=True, max_depth=8, max_features='auto', n_estimators=200))]
 pipeline_obj = Pipeline(estimators)
 myModel = pipeline_obj.fit(X_train, y_train)
 
+### PAGE 5 #############################
 
 y_pred = myModel.predict(X_test)
 
@@ -103,6 +109,8 @@ importance = [(feature, imp) for feature, imp in(
 print(importance)
 
 
+### PAGE 6 #############################
+
 from nyoka import skl_to_pmml
 
 #Converting model to pmml
@@ -113,6 +121,8 @@ skl_to_pmml(pipeline=myModel,
             model_name=model_name,
             description="description")
 
+
+### PAGE 7 #############################
 
 from trendminer.ml.models import ZementisModels
 
@@ -127,11 +137,16 @@ try:
 except trendminer.ml.models.exceptions.MLModelNotFoundException:
     pass
 
+
+### PAGE 8 #############################
+
 # Now we can deploy the model and voila!
 models = ZementisModels(client)
 model_id = models.deploy_model(string)
 model_details = models.model_details(model_id)
 
+
+### PAGE 9 #############################
 
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
