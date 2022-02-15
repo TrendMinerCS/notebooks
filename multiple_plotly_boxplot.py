@@ -93,4 +93,4 @@ fig.add_annotation(
             text="VS<br>PRODUCT");
 
 
-print("%html " + plotly.io.to_html(fig))
+print("%html " + plotly.io.to_html(fig, include_plotlyjs=True))
