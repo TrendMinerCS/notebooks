@@ -14,7 +14,7 @@ from trendminer.trendminer_client import TrendMinerClient
 # Create TrendMiner API object
 client = TrendMinerClient("{TM_TOKEN.password}", "<ENTER_URL_HERE>")
 
-from trendminer.views import Views
+from trendminer.views.views import Views
 views = Views(client)
 
 ######################### DATAFRAME 1 #########################
