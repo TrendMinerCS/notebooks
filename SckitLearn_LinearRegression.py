@@ -46,7 +46,7 @@ client = TrendMinerClient("{TM_TOKEN.password}", tm_url)
 
 views = Views(client)
 df = views.load_view('VIEW_UUID_HERE')
-df=pd.concat(df)
+df_train=pd.concat(df)
 print(df_train.head(10))
 
 
