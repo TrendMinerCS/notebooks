@@ -1,13 +1,6 @@
 import os
 import requests
 import pandas as pd
-from trendminer.trendminer_client import TrendMinerClient
-
-token = os.environ["KERNEL_USER_TOKEN"]
-serverUrl = os.environ["KERNEL_SERVER_URL"]
-
-# Create TrendMiner API object
-client = TrendMinerClient(token, serverUrl)
 
 
 def get_plot_data(name, start, end, intervals):
@@ -29,13 +22,13 @@ def get_plot_data(name, start, end, intervals):
             tag values with timestamp as index
         """    
 
-    headers = {'Authorization': f'Bearer {token}'}
+    headers = {'Authorization': f'Bearer {os.environ["KERNEL_USER_TOKEN"]}'}
     
     params = {
         'tagName': name
     }
     
-    r = requests.get(f'{serverUrl}/hps/api/tags/details', params=params, headers=headers)
+    r = requests.get(f'{os.environ["KERNEL_SERVER_URL"]}/hps/api/tags/details', params=params, headers=headers)
     
     interpolation_type = r.json()['interpolationType']
     numeric = r.json()['type'] in ['ANALOG', 'DISCRETE']
@@ -50,7 +43,7 @@ def get_plot_data(name, start, end, intervals):
         'shifts[]': 0
     }
     
-    r = requests.get(f'{serverUrl}/compute/focusChart', params=params, headers=headers)
+    r = requests.get(f'{os.environ["KERNEL_SERVER_URL"]}/compute/focusChart', params=params, headers=headers)
     
     
     data = pd.DataFrame.from_records((r.json()[0]['values']))
