@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from pprint import pprint
 
 from trendminer.trendminer_client import TrendMinerClient
 from trendminer.views.views import Views
