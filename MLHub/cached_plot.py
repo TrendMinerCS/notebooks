@@ -25,6 +25,7 @@ filename = 'cached_plotly_output.json'
 refresh_rate = timedelta(seconds=3600)
 
 # This is the identifier of the context item on which we will save our attachments
+# To get identifiers: right click in the browser > inspect > Open 'Network' tab > click context item > extract id from request url
 context_item = "269a22f6-5198-4177-be8c-781389139624"
 
 # Get current time
