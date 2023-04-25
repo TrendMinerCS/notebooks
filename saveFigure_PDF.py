@@ -47,7 +47,6 @@ try:
     files = {'file': (pdf_filename, open(pdf_filename, 'rb'), f'application/{extension}')}
     os.remove(pdf_filename)
     auth_header = {'Authorization':("Bearer " + token), 'Content-type':'application/octet-stream'}
-    # r_attachment = requests.get(f"{serverUrl}/context/data/{context_item}/attachments", headers={'Authorization':("Bearer " + token)})
     r = requests.post(f"{serverUrl}/context/data/{context_item}/attachments", headers=auth_header, files=files, params={"name": name, "extension": extension})
 except:
     print(f"File '{pdf_filename}' does not exist.")
