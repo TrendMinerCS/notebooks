@@ -21,6 +21,7 @@ df_list = views.load_view('2ad12a92-7590-40b8-b674-73637649cf5b')
 df = pd.concat(df_list)
 
 # Limit the selection, take only 1 in 6 points
+# This is to make your model training run faster with fewer data points
 df_train = df.iloc[0::6,:]
 
 
