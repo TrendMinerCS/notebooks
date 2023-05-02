@@ -38,7 +38,8 @@ q_error, topo_error = model.fit(df_train, 1000)
 from trendminer.ml.models import ZementisModels
 from pprint import pprint
 
-model_name = "T200-Anomaly"
+# Enter model name. No spaces
+model_name = "ENTER_YOUR_MODEL_NAME"
 
 models = ZementisModels(client)
 
