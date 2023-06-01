@@ -1,13 +1,7 @@
 import pandas as pd
 from pprint import pprint
 
-from datetime import datetime, timedelta
-from dateutil import parser
-
-import plotly.graph_objects as go
-import plotly
 import os
-import time
 import requests
 
 # TrendMiner package import
