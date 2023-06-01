@@ -9,7 +9,6 @@ import plotly
 import os
 import time
 import requests
-import pytz
 
 # TrendMiner package import
 import trendminer
@@ -30,9 +29,6 @@ r = requests.get(f"{os.environ['KERNEL_SERVER_URL']}/context/item/{context_item_
                 headers={"Authorization": f"Bearer {client._TrendMinerClient__token}"}) 
 
 context_item_identifier = r.json()["identifier"]
-
-# Get current time
-current_time = pytz.utc.localize(datetime.utcnow())
 
 # Extract context item attachment data
 response = requests.get(
