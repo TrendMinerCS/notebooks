@@ -32,5 +32,7 @@ def get_contextItem_attachment(attachmentEndpoint):
   
   
 attachmentEndpoint = "/data/046cb744-3690-4a32-8c9c-e171cb906066/attachments/d153bee5-cc86-4546-a217-423eb26bb024/download"
+
 r = get_contextItem_attachment(attachmentEndpoint)
-pmml_string = str(r.content, 'utf-8')
+
+## "r" contains the attachment object. Depending on the format of the file, you might have to take additional actions afterwards to convert to the proper format.
