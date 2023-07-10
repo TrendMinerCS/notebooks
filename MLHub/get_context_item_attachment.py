@@ -16,7 +16,7 @@ token = os.environ["KERNEL_USER_TOKEN"]
 serverUrl = os.environ["KERNEL_SERVER_URL"]
 
 # Create TrendMiner API object
-client = TrendMinerClient(token, serverUrl)
+client = TrendMinerClient(token)
 
 import requests
 import json
