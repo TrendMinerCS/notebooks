@@ -26,7 +26,7 @@ auth_header = {'Authorization': 'Bearer ' + token}
 
 def get_contextItem_attachment(attachmentEndpoint):
     
-    r = requests.get(f'{serverUrl}/context{attachmentEndpoint}', headers=auth_header)
+    r = requests.get(f'{serverUrl}/context{attachmentEndpoint}', headers=auth_header, verify=False)
         
     return r
 
