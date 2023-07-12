@@ -13,7 +13,6 @@ from trendminer.trendminer_client import TrendMinerClient
 import os
 
 token = os.environ["KERNEL_USER_TOKEN"]
-serverUrl = os.environ["KERNEL_SERVER_URL"]
 
 # Create TrendMiner API object
 client = TrendMinerClient(token)
@@ -21,6 +20,7 @@ client = TrendMinerClient(token)
 import requests
 import json
 
+serverUrl = os.environ["KERNEL_SERVER_URL"]
 auth_header = {'Authorization': 'Bearer ' + token}
 
 
