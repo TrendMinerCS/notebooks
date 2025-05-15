@@ -215,4 +215,6 @@ $RECYCLE.BIN/
 # SDK builder
 _build_sdk.py
 
-# End of https://www.toptal.com/developers/gitignore/api/python,macos,windows,linux
+# Trial scripts folder
+/_scripts
+
